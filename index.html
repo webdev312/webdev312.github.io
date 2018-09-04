@@ -51,6 +51,8 @@
         }
 
         function generateNewData() {
+            var bSuccess1 = false;
+            var bSuccess2 = false;
 
             $.ajax({
                 dataType: "json",
@@ -60,6 +62,11 @@
                     $.each(result, function(i, obj) {
                         newData[newData.length] = obj;
                     });
+                    bSuccess1 = true;
+
+                    if ((bSuccess1 == true) && (bSuccess2 == true)){
+                        createGraphChart();
+                    }
                 }
             });
 
@@ -75,9 +82,15 @@
                     for (var i = 0; i < newData1.length; i++) {
                         newData[newData.length] = newData1[i];
                     }
-                    createGraphChart();
+                    bSuccess2 = true;
+
+                    if ((bSuccess1 == true) && (bSuccess2 == true)){
+                        createGraphChart();
+                    }
                 }
             });
+
+
         }
 
         function createStockChart() {
